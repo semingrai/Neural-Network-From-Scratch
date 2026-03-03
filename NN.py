@@ -34,6 +34,28 @@ class Loss:
         return data_loss
 
 
+# Loss Entrophy class
+class Loss_Categorical_Crossentrophy(Loss):
+    #Forward pass
+    def forward(self, y_pred, y_true):
+        # number of sample in a batch
+        sample = len(y_pred)
+        # Clip data to prevent 0 and error
+        # Clip both sides not to drag mean towards any values not being biases
+        y_pred_clipped = np.clip(y_pred, 1e-7, 1-1e-7)
+
+        if len(y_true.shape) == 1:
+            correct_confidences = y_pred_clipped[
+                range(sample),
+                y_true
+            ]
+        elif len(y_true.shape) == 2:
+            correct_confidences = np.sum(y_pred_clipped * y_true, axis=1)
+        
+        neg_log_likelihoods = -np.log(correct_confidences)
+        return neg_log_likelihoods
+        
+
 X, y = spiral_data(samples=100, classes=3)
 
 # 2 inputs 1 3 neuron hidden layers
@@ -50,3 +72,7 @@ dense2.forward(activation1.output)
 activation2.forward(dense2.output)
 
 print(activation2.output[:5])
+
+loss_function = Loss_Categorical_Crossentrophy()
+loss = loss_function.calculate(activation2.output, y)
+print("Loss:", loss)

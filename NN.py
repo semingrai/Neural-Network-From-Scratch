@@ -24,6 +24,16 @@ class Activation_Softmax:
         probablities =  exp_values / np.sum(exp_values, axis=1, keepdims=True)
         self.output = probablities
 
+# Common loss class
+class Loss:
+    def calculate(self, output, y):
+        # calculate sample loss
+        sample_loss = self.forward(output, y)
+        # calculate mean loss
+        data_loss = np.mean(sample_loss)
+        return data_loss
+
+
 X, y = spiral_data(samples=100, classes=3)
 
 # 2 inputs 1 3 neuron hidden layers

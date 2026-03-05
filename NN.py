@@ -10,13 +10,26 @@ class Dense_Layer:
         self.biases = np.zeros((1, n_neurons))
     # Forwarding the input values towards the hidden layers
     def forward(self, inputs):
+        self.inputs = inputs
         self.output = np.dot(inputs, self.weight) + self.biases
+    # Backward pass
+    def backward(self, dvalues):
+        # Gradients on paraments
+        self.dweights = np.dot(self.inputs.T, dvalues)
+        self.dbiases = np.sum(dvalues, axis=0, keepdims=True)
+        #Gradients on values
+        self.dinputs = np.dot(dvalues, self.weight.T)
 
 # ReLU activation function class(0-x)
 class Activation_ReLU:
     def forward(self, inputs):
         self.output = np.maximum(0, inputs)
-
+    # Backward pass
+    def backward(self, dvalues):
+        self.dinputs = dvalues.copy()
+        #Zero gradient where input values were negative
+        self.dinputs[self.inputs <= 0] = 0
+        
 # Softmax function for output measures and probablity
 class Activation_Softmax:
     def forward(self, inputs):

@@ -80,7 +80,7 @@ Predicted probabilities are clipped to `[1e-7, 1-1e-7]` to prevent `log(0)` from
 ### Combined Softmax + Loss Backward Pass
 Running softmax backward then loss backward separately requires the full Jacobian computation. When their derivatives are combined algebraically, almost everything cancels. The result simplifies to:
 
-```
+``` 
 gradient = predicted - true
 ```
 

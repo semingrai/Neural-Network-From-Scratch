@@ -83,7 +83,7 @@ Running softmax backward then loss backward separately requires the full Jacobia
 ``` 
 gradient = predicted - true
 ```
-
+ 
 In code:
 
 ```python

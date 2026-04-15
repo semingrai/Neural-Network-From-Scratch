@@ -98,7 +98,7 @@ Same mathematical result, no Jacobian loop required.
 Gradient descent — nudge each weight in the direction that reduces loss, scaled by the learning rate.
 
 ```
-weights -= learning_rate * dweights
+weights -= learning_rate *  
 biases  -= learning_rate * dbiases
 ```
 

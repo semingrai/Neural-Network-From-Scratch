@@ -89,7 +89,7 @@ In code:
 ```python
 self.dinputs = dvalues.copy()
 self.dinputs[range(samples), y_true] -= 1
-self.dinputs = self.dinputs / samples
+self.dinputs = self.dinputs / samples 
 ```
 
 Same mathematical result, no Jacobian loop required.

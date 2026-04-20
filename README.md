@@ -93,7 +93,7 @@ self.dinputs = self.dinputs / samples
 ```
 
 Same mathematical result, no Jacobian loop required.
-
+ 
 ### SGD Optimizer
 Gradient descent — nudge each weight in the direction that reduces loss, scaled by the learning rate.
 

@@ -1,5 +1,5 @@
 # Neural Network from Scratch — MNIST
-
+ 
 A fully manual implementation of a neural network using only NumPy. No PyTorch, no TensorFlow, no autograd. Every forward pass, backward pass, and gradient calculation is written from first principles.
 
 Trained and evaluated on the MNIST handwritten digit dataset. Achieves ~90% test accuracy.
